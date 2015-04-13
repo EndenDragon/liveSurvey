@@ -1,0 +1,9 @@
+#view-title {
+	font-size:2em;
+	font-family:helvetica !important;
+}
+
+#view-subtitle {
+	font-style: italic;
+	opacity:.5;
+}

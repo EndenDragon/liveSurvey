@@ -1,29 +1,33 @@
 <!doctype html>
 <html>
   <head>
-    <title>Socket.IO chat</title>
-  </head>
-  <body>
-    <ul id="messages"></ul>
-    <form action="">
-      <button value='yes'>Yes</button>
-      <button value='no'>No</button>
-    </form>
-    <!-- // <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> -->
+    <title>liveSurvey</title>
+    <!-- Libraries -->
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-    <script src="js/settings.js"></script>
-    
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-         <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-         <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
-    <div id="container" style="height:1000px"></div>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
+   
+   <!-- JS files -->
+    <script src="js/settings.js"></script>
     <script src="js/Map.js"></script>
-    <script>
+    <script src="js/View.js"></script>
 
-      var socket = new io.connect('http://freeman01.ischool.uw.edu:3000/');
+    <!-- Local CSS files -->
+    <link rel="stylesheet" href="css/View.css" />
+
+  </head>
+  <body>
+    <div id="container">
+      <div id='header'></div>
+    </div>
+    <script>
+      $('#container').height($(window).innerHeight())
+      var socket = new io.connect(settings.socket);
+      var view = new View()
       $('button').click(function(){
         var value =  $(this).val()
         console.log('clicked ', value)
@@ -32,7 +36,7 @@
       });
       socket.on('chat message', function(msg){
         console.log('received ', msg)
-        $('#messages').append($('<li>').text(msg));
+      view.charts[0].addMarker(msg, false)
       });
     </script>
   </body>
