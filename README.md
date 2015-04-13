@@ -1,7 +1,8 @@
-# chat-example
+# liveSurvey
 
-This is the source code for a very simple chat example used for 
-the [Getting Started](http://socket.io/get-started/chat/) guide 
-of the Socket.IO website.
+liveSurvey provides a way to solicit information from audiences and display their responses.  The intention is to build these into [reveal.js](http://lab.hakim.se/reveal-js/#/) presentations, and leverage the [multiplex](https://github.com/hakimel/reveal.js/#multiplexing) functionality to bring audiences along.  
 
-Please refer to it to learn how to run this application.
+Starting with a [leaflet.js](http://leafletjs.com/) map.  
+
+Socket.io code from the[socket.io](http://socket.io/get-started/chat/) website example.
+
