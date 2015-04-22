@@ -15,8 +15,10 @@ var Map = function (sets) {
 		circleColor:'blue',
 		circleStroke:false,
 		circleWeight:1,
+		clicks:0,
 		getHeight:function() {return $('#' + self.settings.container).innerHeight() - $('#header').height() - 20}, 
 		clickFunction:function(e){
+			console.log('click function ', self.settings.clicks)
 	        self.settings.clicks ++ 
 	            if(self.settings.clicks == 1) {
 	                setTimeout(function() {
@@ -67,8 +69,6 @@ Map.prototype.init = function() {
 
 	self.markerGroup = new L.LayerGroup();
  
-    self.map.on('click', self.settings.clickFunction)
-
 	if(self.settings.showMap == true) {
 		self.map.addLayer(mapboxTiles)	
 	}
@@ -78,11 +78,7 @@ Map.prototype.init = function() {
 Map.prototype.addMarker = function(latlng, click, type) {
 	var self = this
 	var type = type == undefined ? 'circle' : type
-	console.log(latlng, click)
 	switch(type) {
-		case 'pin':
-			var newMarker = new L.marker(latlng).addTo(self.map);
-			break;
 		case 'circle':
 			var newMarker = new L.circleMarker(latlng,  {
 				radius:10,
@@ -92,6 +88,5 @@ Map.prototype.addMarker = function(latlng, click, type) {
 			}).addTo(self.map);
 			break;
 	}
-	if(click != false) socket.emit('chat message', latlng);
 }
 	

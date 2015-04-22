@@ -2,6 +2,7 @@ var View = function (sets) {
 	var self = this
 	var defaults = {
 		charts:['map'],
+		getUser:false,
 		titleContainer:'header',
 		titleText:'Where did you grow up?', 
 		subtitleText:'(click to add marker)'
@@ -27,19 +28,33 @@ View.prototype.addTitle = function() {
 View.prototype.init = function() {
 	var self = this
 	self.socket = new io.connect(self.settings.socket);
+	
+	// Get user
+	if(self.settings.getUser == true){
+		Apprise("Name", self.settings.userOptions)
+	}
+	else self.build()
+}
+
+View.prototype.build = function() {
+	var self = this
 	self.addTitle()
-	self.buildControls()
-	self.addEvents()
+	self.buildControls()	
 	self.charts = self.settings.charts.map(function(chart){
 		switch(chart) {
 			case 'map':
 				return new Map(settings[chart])
+				break;
+			case 'chat':
+				return new Chat(settings[chart])
 		}
 	})
+	self.addEvents()
 }
 
 View.prototype.buildControls = function(){
 	var self = this
+	if(self.settings.controls == undefined) return
 	self.settings.controls.map(function(control){
 		switch(control.type){
 			case 'buttons':
@@ -70,7 +85,23 @@ View.prototype.buildControls = function(){
 
 View.prototype.addEvents = function() {
 	var self = this
+
+	// Add listeners
 	self.settings.listeners.map(function(event){
 		self.socket.on(event.on, event.action)
 	})
+
+	// Add custom events (ie, not controls)
+	self.settings.customEvents.map(function(event){
+		switch(event.type) {
+			case 'form':
+				$(event.ele).submit(event.action)
+				break;
+			case 'map':
+				self.charts[0].map.on('click', event.action)
+				break;	
+		}
+	})
+
+	 
 }
