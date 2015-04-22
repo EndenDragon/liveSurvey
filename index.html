@@ -3,6 +3,11 @@
   <head>
     <title>liveSurvey</title>
     <!-- Libraries -->
+
+     <!-- Add jQuery and jQuery UI JavaSript files  -->
+       <script type="text/javascript" src="lib/jquery-1.8.2.min.js"></script>
+       <script type="text/javascript" src="lib/jquery-ui-1.10.4/js/jquery-ui-1.10.4.js"></script>
+
     <script src="http://d3js.org/d3.v3.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
@@ -16,6 +21,12 @@
     <script src="js/Map.js"></script>
     <script src="js/View.js"></script>
 
+  <!-- controls -->
+     <script type="text/javascript" src="lib/select2-3.2/select2.js"></script> 
+     <link type="text/css" rel="stylesheet" href="lib/select2-3.2/select2.css"/>
+     <script type="text/javascript" src="lib/controls/controls-0.1.0/controls.js"></script>
+    <link type="text/css" rel="stylesheet" href="lib/controls/controls-0.1.0/controls.css"/>   
+
     <!-- Local CSS files -->
     <link rel="stylesheet" href="css/View.css" />
 
@@ -26,18 +37,18 @@
     </div>
     <script>
       $('#container').height($(window).innerHeight())
-      var socket = new io.connect(settings.socket);
-      var view = new View()
-      $('button').click(function(){
-        var value =  $(this).val()
-        console.log('clicked ', value)
-        socket.emit('chat message', value);
-        return false;
-      });
-      socket.on('chat message', function(msg){
-        console.log('received ', msg)
-      view.charts[0].addMarker(msg, false)
-      });
+      // var socket = new io.connect(settings.socket);
+      var view = new View(settings.view)
+      // $('button').click(function(){
+      //   var value =  $(this).val()
+      //   console.log('clicked ', value)
+      //   view.socket.emit('chat message', value);
+      //   return false;
+      // });
+      // socket.on('chat message', function(msg){
+      //   console.log('received ', msg)
+      // view.charts[0].addMarker(msg, false)
+      // });
     </script>
   </body>
 </html>

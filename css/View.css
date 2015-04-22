@@ -7,3 +7,7 @@
 	font-style: italic;
 	opacity:.5;
 }
+
+#map {
+	cursor:pointer;
+}

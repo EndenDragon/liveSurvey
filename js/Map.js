@@ -5,11 +5,16 @@ var Map = function (sets) {
 		id:'map',
 		container:'container',
 		attribution:'<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>',
-		tileUrl:'https://{s}.tiles.mapbox.com/v4/michaelfreeman.lmgiepbm/{z}/{x}/{y}.png?access_token=',
+		tileUrl:'https://{s}.tiles.mapbox.com/v4/michaelfreeman.lc5jblfh/{z}/{x}/{y}.png?access_token=',
 		accessToken:'pk.eyJ1IjoibWljaGFlbGZyZWVtYW4iLCJhIjoibE5leG9MRSJ9.YHTl3OfWurGattFSUzwhag',
 		showMap:true,
-		center:[47.6097, -122.3331],
-		zoom:8, 
+		center:[1.054, -2.10],
+		zoom:1, 
+		circleSize:100000, 
+		circleOpacity:.2,
+		circleColor:'blue',
+		circleStroke:false,
+		circleWeight:1,
 		getHeight:function() {return $('#' + self.settings.container).innerHeight() - $('#header').height() - 20}, 
 		clickFunction:function(e){
 	        self.settings.clicks ++ 
@@ -27,9 +32,17 @@ var Map = function (sets) {
 	       
 	    }
 	}
+	$(window).resize(function() {self.setHeight()})
 	self.settings = $.extend(false, defaults, sets)
 	self.init()
 	
+}
+
+Map.prototype.setHeight = function() {
+	var self = this
+	$('#container').height($(window).innerHeight())
+	var height = self.settings.getHeight()
+	d3.select('#' + self.settings.id).style('height', height + 'px')
 }
 
 Map.prototype.init = function() {
@@ -62,10 +75,23 @@ Map.prototype.init = function() {
 }
 	
 
-Map.prototype.addMarker = function(latlng, click) {
+Map.prototype.addMarker = function(latlng, click, type) {
 	var self = this
+	var type = type == undefined ? 'circle' : type
 	console.log(latlng, click)
-	var newMarker = new L.marker(latlng).addTo(self.map);
+	switch(type) {
+		case 'pin':
+			var newMarker = new L.marker(latlng).addTo(self.map);
+			break;
+		case 'circle':
+			var newMarker = new L.circleMarker(latlng,  {
+				radius:10,
+				weight:self.settings.circleWeight, 
+				fillOpacity:self.settings.circleOpacity, 
+				fillColor:self.settings.circleColor,
+			}).addTo(self.map);
+			break;
+	}
 	if(click != false) socket.emit('chat message', latlng);
 }
 	
