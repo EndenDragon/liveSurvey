@@ -31,7 +31,7 @@ View.prototype.init = function() {
 	
 	// Get user
 	if(self.settings.getUser == true){
-		Apprise("Name", self.settings.userOptions)
+		Apprise(self.settings.userPrompt, self.settings.userOptions)
 	}
 	else self.build()
 }
@@ -47,6 +47,10 @@ View.prototype.build = function() {
 				break;
 			case 'chat':
 				return new Chat(settings[chart])
+				break;
+			case 'histogram':
+				return new Histogram(settings[chart])
+				break;
 		}
 	})
 	self.addEvents()
@@ -79,6 +83,28 @@ View.prototype.buildControls = function(){
 				var submit = $('<button>',{text:'submit', click:control.action})
 				$('#container').append(label).append(input).append(submit)
 				break;
+			case 'slider-confirm':
+				var sliderTooltip = function(event, ui) {
+				    var curValue = ui.value || control.value;
+				    var tooltip = '<div class="tooltip"><div class="tooltip-inner">' + curValue + '</div><div class="tooltip-arrow"></div></div>';
+				    $('.ui-slider-handle').html(tooltip);
+				   
+				}
+				$("#container").append('<div id=' + control.id + '-wrapper>')
+				$('#' + control.id + '-wrapper').append('<div id=' + control.id + ' class="slider">')
+				$('#' + control.id).slider({
+					min:control.min == undefined ? 0 : control.min, 
+					max:control.max == undefined ? 10 : control.max, 
+					value:control.value == undefined ? 5 : control.value, 
+					create: sliderTooltip,
+    				slide: sliderTooltip, 
+    				width:control.width == undefined ? '200px' : control.width,
+    				stop:function() { $('.ui-slider-handle').blur()}
+
+				})
+				var submit = $('<button>',{text:'submit', click:control.action})
+				$('#' + control.id + '-wrapper').append(submit)
+				break;
 		}
 	})
 }
@@ -87,21 +113,23 @@ View.prototype.addEvents = function() {
 	var self = this
 
 	// Add listeners
-	self.settings.listeners.map(function(event){
-		self.socket.on(event.on, event.action)
-	})
+	if(self.settings.listeners != undefined) {
+		self.settings.listeners.map(function(event){
+			self.socket.on(event.on, event.action)
+		})
+	}
 
 	// Add custom events (ie, not controls)
-	self.settings.customEvents.map(function(event){
-		switch(event.type) {
-			case 'form':
-				$(event.ele).submit(event.action)
-				break;
-			case 'map':
-				self.charts[0].map.on('click', event.action)
-				break;	
-		}
-	})
-
-	 
+	if(self.settings.customEvents != undefined) {
+		self.settings.customEvents.map(function(event){
+			switch(event.type) {
+				case 'form':
+					$(event.ele).submit(event.action)
+					break;
+				case 'map':
+					self.charts[0].map.on('click', event.action)
+					break;	
+			}
+		})
+	}
 }

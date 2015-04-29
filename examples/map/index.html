@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+  <head>
+    <title>liveSurvey</title>
+    <!-- Libraries -->
+
+    <!-- Add jQuery and Apprise-->
+  
+
+    <!-- Online Libraries -->
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
+   
+   <!-- JS files -->
+    <script src="settings.js"></script>
+    <script src="../../js/Map.js"></script>
+    <script src="../../js/Chat.js"></script>
+    <script src="../../js/View.js"></script>
+    
+    <!-- Local libraries -->
+    <script type="text/javascript" src="../../lib/apprise/apprise-v2.js"></script>
+    <link type="text/css" rel="stylesheet" href="../../lib/apprise/apprise-v2.css"/>
+
+    <!-- Local CSS files -->
+    <link rel="stylesheet" href="../../css/View.css" />
+    <link rel="stylesheet" href="../../css/Chat.css" />
+
+  </head>
+  <body>
+    <div id="container">
+      <div id='header'></div>
+    </div>
+    <script>
+      var view;
+      $(document).ready(function() {
+        $('#container').height($(window).innerHeight())
+        view = new View(settings.view)
+      })
+    </script>
+  </body>
+</html>
