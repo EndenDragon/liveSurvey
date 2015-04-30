@@ -41,7 +41,7 @@ View.prototype.build = function() {
 	self.addTitle()
 	self.buildControls()	
 	self.charts = self.settings.charts.map(function(chart){
-		switch(chart) {
+		switch(settings[chart].type) {
 			case 'map':
 				return new Map(settings[chart])
 				break;
@@ -50,6 +50,12 @@ View.prototype.build = function() {
 				break;
 			case 'histogram':
 				return new Histogram(settings[chart])
+				break;
+			case 'bar':
+				return new Bar(settings[chart])
+				break;
+			case 'pie':
+				return new Pie(settings[chart])
 				break;
 		}
 	})
@@ -129,6 +135,12 @@ View.prototype.addEvents = function() {
 				case 'map':
 					self.charts[0].map.on('click', event.action)
 					break;	
+				case 'pie':
+					self.charts[0].g.selectAll('.arc').on('click', event.action)
+					break;	
+				case 'bar':
+					self.charts[0].g.selectAll('rect').on('click', event.action)
+					break;
 			}
 		})
 	}

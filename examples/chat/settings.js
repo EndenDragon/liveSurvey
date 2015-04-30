@@ -41,4 +41,7 @@ var settings = {
 		titleText:"What's up?", 
 		subtitleText:'(type response below)'
 	},
+	chat:{
+		type:'chat',
+	},
 }

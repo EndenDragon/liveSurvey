@@ -32,8 +32,7 @@ var settings = {
 		subtitleText:'(slide, then click submit)', 
 	},
 	histogram:{
-			xMin:-20, 
-			xMax:20, 
-			values:[]
-		}
+		type:'histogram',
+		values:[]
+	}
 }

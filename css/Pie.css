@@ -1,0 +1,11 @@
+.arc {
+	cursor:pointer;
+	opacity:.6;
+	stroke: #fff;
+}
+
+#pie text {
+	fill:white !important;
+	font-size:20px;
+	font-family:helvetica;
+}

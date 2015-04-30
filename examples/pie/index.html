@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+  <head>
+    <title>liveSurvey</title>
+    <!-- Libraries -->
+
+    <!-- Add jQuery and Apprise-->
+  
+
+    <!-- Online Libraries -->
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/black-tie/jquery-ui.min.css">
+  <!-- // <script src="//code.jquery.com/jquery-1.10.2.js"></script> -->
+  <!-- // <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> -->
+
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.min.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <!-- // <script src="http://code.jquery.com/jquery-1.11.1.js"></script> -->
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
+   
+   <!-- JS files -->
+    <script src="settings.js"></script>
+    <script src="../../js/Pie.js"></script>
+    <script src="../../js/Bar.js"></script>
+    <script src="../../js/View.js"></script>
+    
+    <!-- Local libraries -->
+    <script type="text/javascript" src="../../lib/apprise/apprise-v2.js"></script>
+    <link type="text/css" rel="stylesheet" href="../../lib/apprise/apprise-v2.css"/>
+
+    <!-- Local CSS files -->
+    <link rel="stylesheet" href="../../css/View.css" />
+    <link rel="stylesheet" href="../../css/Bar.css" />
+    <link rel="stylesheet" href="../../css/Pie.css" />
+    <link rel="stylesheet" href="../../css/Controls.css" />
+    <style>
+      .chart {
+        display:inline-block;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id='header'></div>
+    </div>
+    <script>
+      var view;
+      $(document).ready(function() {
+        var height = $(window).innerHeight() - 50
+        $('#container').height(height)
+        console.log("container height ", height)
+        view = new View(settings.view)
+        $(window).resize(function() {
+          view.charts[0].draw()
+        })
+      })
+    </script>
+  </body>
+</html>

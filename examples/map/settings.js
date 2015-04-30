@@ -21,4 +21,7 @@ var settings = {
 		titleText:"Where did you grow up?", 
 		subtitleText:'(click to add your mark)'
 	},
+	map:{
+		type:'map',
+	}
 }

@@ -1,0 +1,20 @@
+rect {
+  fill: steelblue;
+  opacity:.8;
+  shape-rendering: crispEdges;
+}
+
+.text {
+  fill: #fff;
+}
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  font-family:helvetica;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+	font-family:helvetica;
+}
