@@ -96,7 +96,7 @@ View.prototype.buildControls = function(){
 				    $('.ui-slider-handle').html(tooltip);
 				   
 				}
-				$("#container").append('<div id=' + control.id + '-wrapper>')
+				$("#container").append('<div id=' + control.id + '-wrapper>')				
 				$('#' + control.id + '-wrapper').append('<div id=' + control.id + ' class="slider">')
 				$('#' + control.id).slider({
 					min:control.min == undefined ? 0 : control.min, 
@@ -108,6 +108,11 @@ View.prototype.buildControls = function(){
     				stop:function() { $('.ui-slider-handle').blur()}
 
 				})
+				$('#' + control.id).append("<div id=slider-labels style='font-size:12px; margin-top:25px; text-align:center;'>")
+				$('#slider-labels').append('<div style="width:33%;text-align:left;"><span>very distracting</span></div>')
+				$('#slider-labels').append('<div style="width:33%;text-align:center;"><span>neutral</span></div>')
+				$('#slider-labels').append('<div style="width:33%;text-align:right;"><span>awesome</span></div>')
+
 				var submit = $('<button>',{text:'submit', click:control.action})
 				$('#' + control.id + '-wrapper').append(submit)
 				break;

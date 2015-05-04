@@ -11,7 +11,6 @@ var settings = {
 				type:'buttons', 
 				options:function() {
 					return options.map(function(d){return {id:d, text:d}})
-					// return [{id:'Junior', text:'No'}, {id:'yes', text:'Yes'}]
 				}, 
 				action:function(){
 			        if(settings.submitted == true && settings.protect == true) return
@@ -28,7 +27,6 @@ var settings = {
 				on:'chat message', 
 				action:function(value) {
 					view.charts[0].settings.values.filter(function(d) {return d.category == value}).map(function(d) {d.value += 1})
-					// view.charts[0].settings.values.push(value)
 					view.charts[0].draw()
 				}
 			}
@@ -37,6 +35,7 @@ var settings = {
 		subtitleText:'', 
 	},
 	bar:{
+		type:'bar',
 		values:options.map(function(d) {
 			return {category:d, value:0}
 		})

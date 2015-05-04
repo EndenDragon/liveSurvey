@@ -49,6 +49,11 @@ button {
 .ui-slider-handle {
     cursor:pointer !important;
 }
+
+#slider-labels div {
+    display:inline-block;
+    opacity:.5;
+}
 /*.ui-slider {
     background: black repeat-x bottom left;
     border-bottom: 1px solid #EBEAE5;

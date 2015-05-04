@@ -6,8 +6,8 @@ var settings = {
 			{
 				id:'slider', 
 				type:'slider-confirm',
-				max:20, 
-				min:-20, 
+				max:10, 
+				min:-10, 
 				value:0, 
 				width:200,
 				action:function() {
@@ -28,11 +28,13 @@ var settings = {
 				}
 			}
 		],
-		titleText:"What's your favorite number?", 
-		subtitleText:'(slide, then click submit)', 
+		titleText:"How useful was this platform?", 
+		subtitleText:'slide, then click "submit"', 
 	},
 	histogram:{
 		type:'histogram',
+		xMin:-10,
+		xMax:10,
 		values:[]
 	}
 }
