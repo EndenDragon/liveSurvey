@@ -1,7 +1,7 @@
 var options = ['A', 'B', 'C', 'D', 'E']
 var settings = {
 	submitted:false,
-	protect:false, 
+	protect:true, 
 	view:{
 		id:'two-bars',
 		socket:'http://freeman01.ischool.uw.edu:3001/',
@@ -21,8 +21,10 @@ var settings = {
 			{ 
 				type:'bar', 
 				action:function(obj) {
+					if(settings.submitted == true && settings.protect == true) return
 					var id = view.settings.id
 			        view.socket.emit('chat message', {value:obj.category, id:id});
+			        settings.submitted = true
 				}				
 			}
 		],

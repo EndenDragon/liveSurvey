@@ -1,7 +1,7 @@
 var options = ['Freshman', 'Sophomore', 'Junior', 'Senior', 'Other']
 var settings = {
 	submitted:false,
-	protect:false, 
+	protect:true, 
 	view:{
 		id:'bar',
 		socket:'http://freeman01.ischool.uw.edu:3002/',

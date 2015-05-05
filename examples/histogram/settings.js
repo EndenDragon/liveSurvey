@@ -1,4 +1,6 @@
 var settings = {
+	submitted:false, 
+	protect:true,
 	view:{
 		socket:'http://freeman01.ischool.uw.edu:3003/',
 		charts:['histogram'],
@@ -11,8 +13,10 @@ var settings = {
 				value:0, 
 				width:200,
 				action:function() {
+					if(settings.submitted == true && settings.protect == true) return
 					var value = $('#slider').slider('value')
 					view.socket.emit('chat message', {value:value, id:view.settings.id})
+					settings.submitted = true
 				}
 			}
 

@@ -1,4 +1,6 @@
 var settings = {
+	protect:true, 
+	submitted:false,
 	view:{
 		id:'map',
 		socket:'http://freeman01.ischool.uw.edu:3004/',
@@ -16,8 +18,10 @@ var settings = {
 			{ 
 				type:'map', 
 				action:function(value) {
+					if(settings.submitted == true && settings.protect == true) return
 					var id = view.settings.id
 			        view.socket.emit('chat message', {latlng:value.latlng, id:id});
+			        settings.submitted = true
 				}				
 			}
 		], 

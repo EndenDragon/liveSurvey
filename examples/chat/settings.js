@@ -1,4 +1,6 @@
 var settings = {
+	protect:true, 
+	submitted:false,
 	view:{
 		id:'chat',
 		socket:'http://freeman01.ischool.uw.edu:3000/',
@@ -33,10 +35,12 @@ var settings = {
 				ele:'.chat-form', 
 				type:'form', 
 				action:function(){
+					if(settings.submitted == true && settings.protect == true) return false;
 					var val = view.settings.user == undefined ? $('#m').val() : '<b>' + view.settings.user + '</b>: ' + $('#m').val()
 			        view.socket.emit('chat message', {id:view.settings.id, value:val});
 			        $('#m').val('');
 			        $('.send-button').blur()
+			        settings.submitted = true
 			        return false;
 			    }, 
 			},
