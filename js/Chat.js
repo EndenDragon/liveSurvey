@@ -12,9 +12,7 @@ var Chat = function (sets) {
 
 Chat.prototype.init = function() {
 	var self = this
-	console.log('conatiner ', self.settings.container, ' height ', d3.select('#' + self.settings.container).style('height'))
 	var height = Number(d3.select('#' + self.settings.container).style('height').split('px')[0]) - 100
-	console.log('max height ', height)
 	self.container = d3.select('#' + self.settings.container).append('div').attr('id', self.settings.id)
 	self.chatBox = self.container.append('ul').attr('id', 'messages').style('max-height', height + 'px')
 	self.form = self.container.append('form').attr("class", 'chat-form')

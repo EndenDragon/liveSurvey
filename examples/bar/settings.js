@@ -3,6 +3,7 @@ var settings = {
 	submitted:false,
 	protect:false, 
 	view:{
+		id:'bar',
 		socket:'http://freeman01.ischool.uw.edu:3000/',
 		charts:['bar'],
 		controls:[
@@ -15,7 +16,8 @@ var settings = {
 				action:function(){
 			        if(settings.submitted == true && settings.protect == true) return
 			        var value =  $(this)[0].id
-			        view.socket.emit('chat message', value);
+			    	var id = view.settings.id
+			        view.socket.emit('chat message', {value:value, id:id});
 			        settings.submitted = true
 			        return false;
 			    }
@@ -25,7 +27,9 @@ var settings = {
 		listeners:[
 			{
 				on:'chat message', 
-				action:function(value) {
+				action:function(obj) {
+					if(obj.id != view.settings.id) return
+					var value = obj.value
 					view.charts[0].settings.values.filter(function(d) {return d.category == value}).map(function(d) {d.value += 1})
 					view.charts[0].draw()
 				}

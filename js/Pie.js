@@ -41,7 +41,7 @@ var Pie = function(sets) {
 		text.attr("transform", function(d) { return "translate(" + self.arc.centroid(d) + ")"; })
 	      	.attr("dy", ".35em")
 	      	.style("text-anchor", "middle")
-	      	.text(function(d) { console.log(d);return d.data.category; });
+	      	.text(function(d) {return d.data.category; });
 	}
 	self.init()
 }
@@ -54,7 +54,6 @@ Pie.prototype.setScales = function() {
 			value:self.settings.values[d].value
 		}
 	})
-	console.log('self.data ', self.data)
 	self.settings.height = self.settings.getHeight()
 	self.settings.width = self.settings.getWidth(self)
 	self.radius = self.settings.getRadius()
@@ -90,7 +89,6 @@ Pie.prototype.draw = function() {
 
 	var entering = groups.enter().append("g").attr('class', 'group')
 	
-	// entering.append('path').attr('d', self.arc)
 	self.arcs = d3.selectAll('.group').selectAll(".arc")
 		.data(function(d) {return [d];}, function(d){return d.data.group})
 
@@ -103,12 +101,8 @@ Pie.prototype.draw = function() {
 
 	self.text.enter().append("text").call(self.textFunction)
 	
-	// self.g.selectAll('.group').transition().duration(500).call(self.groupPosition)
 	self.g.selectAll('.group path').transition().duration(500).call(self.arcFunction)
 	self.g.selectAll('.group text').transition().duration(500).call(self.textFunction)
 
-
-
-	
 	
 }

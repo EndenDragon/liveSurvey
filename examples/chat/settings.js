@@ -1,5 +1,6 @@
 var settings = {
 	view:{
+		id:'chat',
 		socket:'http://freeman01.ischool.uw.edu:3000/',
 		charts:['chat'], 
 		getUser:true,
@@ -20,7 +21,9 @@ var settings = {
 		listeners: [
 			{
 				on:'chat message', 
-				action:function(value) {
+				action:function(obj) {
+					if(obj.id != view.settings.id) return
+					var value = obj.value
 					 $('#messages').append($('<li>').html(value));
 				}
 			}, 
@@ -31,7 +34,7 @@ var settings = {
 				type:'form', 
 				action:function(){
 					var val = view.settings.user == undefined ? $('#m').val() : '<b>' + view.settings.user + '</b>: ' + $('#m').val()
-			        view.socket.emit('chat message', val);
+			        view.socket.emit('chat message', {id:view.settings.id, value:val});
 			        $('#m').val('');
 			        $('.send-button').blur()
 			        return false;

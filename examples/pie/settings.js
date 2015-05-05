@@ -3,14 +3,16 @@ var settings = {
 	submitted:false,
 	protect:false, 
 	view:{
+		id:'pie',
 		socket:'http://freeman01.ischool.uw.edu:3000/',
 		charts:['pie', 'bar'], 
 		listeners:[
 			{
 				on:'chat message', 
-				action:function(value) {
+				action:function(obj) {
+					if(obj.id != view.settings.id) return
+					var value = obj.value
 					view.charts[1].settings.values.filter(function(d) {return d.category == value}).map(function(d) {d.value += 1})
-					// view.charts[0].settings.values.push(value)
 					view.charts[1].draw()
 				}
 			}
@@ -19,8 +21,7 @@ var settings = {
 			{ 
 				type:'pie', 
 				action:function(value) {
-					console.log('clicked ', value)
-					view.socket.emit('chat message', value.data.category)
+					view.socket.emit('chat message', {value:value.data.category, id:view.settings.id})
 				}				
 			}
 		],

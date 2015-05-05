@@ -3,15 +3,16 @@ var settings = {
 	submitted:false,
 	protect:false, 
 	view:{
+		id:'two-bars',
 		socket:'http://freeman01.ischool.uw.edu:3000/',
 		charts:['bar1', 'bar'], 
 		listeners:[
 			{
 				on:'chat message', 
-				action:function(value) {
-					console.log('value ', value)
+				action:function(obj) {
+					if(obj.id != view.settings.id) return
+					var value = obj.value
 					view.charts[1].settings.values.filter(function(d) {return d.category == value}).map(function(d) {d.value += 1})
-					// view.charts[0].settings.values.push(value)
 					view.charts[1].draw()
 				}
 			}
@@ -19,9 +20,9 @@ var settings = {
 		customEvents:[
 			{ 
 				type:'bar', 
-				action:function(value) {
-					console.log('clicked ', value)
-					view.socket.emit('chat message', value.category)
+				action:function(obj) {
+					var id = view.settings.id
+			        view.socket.emit('chat message', {value:obj.category, id:id});
 				}				
 			}
 		],
