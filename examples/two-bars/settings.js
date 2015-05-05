@@ -32,7 +32,7 @@ var settings = {
 		type:'bar',
 		id:'bar1',
 		values:options.map(function(d) {
-			var value = d == 'C' ? 2.3 : 2
+			var value = d == 'D' ? 2.04 : 2
 			return {category:d, value:value}
 		}), 
 		getWidth:function(chart) {
