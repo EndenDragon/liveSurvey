@@ -45,7 +45,6 @@
       $(document).ready(function() {
         var height = $(window).innerHeight() - 50
         $('#container').height(height)
-        console.log("container height ", height)
         view = new View(settings.view)
         $(window).resize(function() {
           view.charts[0].draw()

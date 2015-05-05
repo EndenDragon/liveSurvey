@@ -16,6 +16,7 @@ var settings = {
 					if(settings.submitted == true && settings.protect == true) return
 					var value = $('#slider').slider('value')
 					view.socket.emit('chat message', {value:value, id:view.settings.id})
+					$('#view-subtitle').text("you've submitted!")
 					settings.submitted = true
 				}
 			}

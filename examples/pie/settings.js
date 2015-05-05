@@ -23,6 +23,7 @@ var settings = {
 				action:function(value) {
 					if(settings.submitted == true && settings.protect == true) return
 					view.socket.emit('chat message', {value:value.data.category, id:view.settings.id})
+					$('#view-subtitle').text("you've submitted!")
 					settings.submitted = true
 				}				
 			}

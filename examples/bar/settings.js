@@ -19,6 +19,7 @@ var settings = {
 			    	var id = view.settings.id
 			        view.socket.emit('chat message', {value:value, id:id});
 			        settings.submitted = true
+			        $('#view-subtitle').text("you've submitted!")
 			        return false;
 			    }
 			}, 
@@ -36,7 +37,7 @@ var settings = {
 			}
 		],
 		titleText:"What is your class standing?", 
-		subtitleText:'', 
+		subtitleText:'(click to share)', 
 	},
 	bar:{
 		type:'bar',

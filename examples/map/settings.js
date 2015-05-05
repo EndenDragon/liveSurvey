@@ -21,6 +21,7 @@ var settings = {
 					if(settings.submitted == true && settings.protect == true) return
 					var id = view.settings.id
 			        view.socket.emit('chat message', {latlng:value.latlng, id:id});
+			        $('#view-subtitle').text("you've submitted!")
 			        settings.submitted = true
 				}				
 			}

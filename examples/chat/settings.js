@@ -1,5 +1,5 @@
 var settings = {
-	protect:true, 
+	protect:false, 
 	submitted:false,
 	view:{
 		id:'chat',
@@ -15,7 +15,7 @@ var settings = {
 					action:function(e){
 						view.settings.user = e.input
 						Apprise('close')
-						view.build()
+						// view.build()
 					}
 				}
 			}
@@ -26,7 +26,10 @@ var settings = {
 				action:function(obj) {
 					if(obj.id != view.settings.id) return
 					var value = obj.value
-					 $('#messages').append($('<li>').html(value));
+					var chatBox = $('#messages')
+					chatBox.append($('<li>').html(value));
+					var height = chatBox.prop('scrollHeight')
+					chatBox.scrollTop(height)
 				}
 			}, 
 		], 
@@ -41,6 +44,7 @@ var settings = {
 			        $('#m').val('');
 			        $('.send-button').blur()
 			        settings.submitted = true
+			        $('#view-subtitle').text("you've submitted!")
 			        return false;
 			    }, 
 			},

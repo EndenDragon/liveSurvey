@@ -33,7 +33,8 @@ View.prototype.init = function() {
 	if(self.settings.getUser == true){
 		Apprise(self.settings.userPrompt, self.settings.userOptions)
 	}
-	else self.build()
+	// else self.build()
+	self.build()
 }
 
 View.prototype.build = function() {
