@@ -1,7 +1,7 @@
 var settings = {
 	view:{
 		id:'map',
-		socket:'http://freeman01.ischool.uw.edu:3000/',
+		socket:'http://freeman01.ischool.uw.edu:3004/',
 		charts:['map'], 
 		listeners: [
 			{

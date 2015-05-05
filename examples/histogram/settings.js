@@ -1,6 +1,6 @@
 var settings = {
 	view:{
-		socket:'http://freeman01.ischool.uw.edu:3000/',
+		socket:'http://freeman01.ischool.uw.edu:3003/',
 		charts:['histogram'],
 		controls:[
 			{

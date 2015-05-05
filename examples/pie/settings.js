@@ -4,7 +4,7 @@ var settings = {
 	protect:false, 
 	view:{
 		id:'pie',
-		socket:'http://freeman01.ischool.uw.edu:3000/',
+		socket:'http://freeman01.ischool.uw.edu:3005/',
 		charts:['pie', 'bar'], 
 		listeners:[
 			{
