@@ -12,9 +12,7 @@ var settings = {
 				width:200,
 				action:function() {
 					var value = $('#slider').slider('value')
-					view.socket.emit('chat message', value)
-					// view.charts[0].settings.values.push(value)
-					// view.charts[0].draw()
+					view.socket.emit('chat message', {value:value, id:view.settings.id})
 				}
 			}
 
@@ -22,7 +20,9 @@ var settings = {
 		listeners:[
 			{
 				on:'chat message', 
-				action:function(value) {
+				action:function(obj) {
+					if(obj.id != view.settings.id) return
+					var value = obj.value
 					view.charts[0].settings.values.push(value)
 					view.charts[0].draw()
 				}
