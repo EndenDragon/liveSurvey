@@ -1,5 +1,5 @@
 var settings = {
-	protect:false, 
+	protect:true, 
 	submitted:false,
 	view:{
 		id:'chat',

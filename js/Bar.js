@@ -10,7 +10,7 @@ var Bar = function(sets) {
 		formatCount:d3.format(",.0f"),
 		margin:{top: 10, right: 30, bottom: 30, left: 30}, 
 		getWidth:function() {
-			return $(window).width() - self.settings.margin.left - self.settings.margin.right;
+			return $(window).width() - self.settings.margin.left - self.settings.margin.right - 50;
 		},
 		getHeight:function() {
 			return $(window).height()/2 - self.settings.margin.top - self.settings.margin.bottom;
