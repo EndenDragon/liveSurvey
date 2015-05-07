@@ -110,9 +110,9 @@ View.prototype.buildControls = function(){
 
 				})
 				$('#' + control.id).append("<div id=slider-labels style='font-size:12px; margin-top:25px; text-align:center;'>")
-				$('#slider-labels').append('<div style="width:33%;text-align:left;"><span>very distracting</span></div>')
-				$('#slider-labels').append('<div style="width:33%;text-align:center;"><span>neutral</span></div>')
-				$('#slider-labels').append('<div style="width:33%;text-align:right;"><span>awesome</span></div>')
+				$('#slider-labels').append('<div style="width:33%;text-align:left;"><span>' + control.labels[0] + '</span></div>')
+				$('#slider-labels').append('<div style="width:33%;text-align:center;"><span>' + control.labels[1] + '</span></div>')
+				$('#slider-labels').append('<div style="width:33%;text-align:right;"><span>' + control.labels[2] + '</span></div>')
 
 				var submit = $('<button>',{text:'submit', click:control.action})
 				$('#' + control.id + '-wrapper').append(submit)

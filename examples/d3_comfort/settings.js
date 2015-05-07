@@ -2,7 +2,7 @@ var settings = {
 	submitted:false, 
 	protect:true,
 	view:{
-		id:'useful',
+		id:'d3-comfort',
 		socket:'http://freeman01.ischool.uw.edu:3003/',
 		charts:['histogram'],
 		controls:[
@@ -10,9 +10,9 @@ var settings = {
 				id:'slider', 
 				type:'slider-confirm',
 				labels:[
-					'very distracting', 
-					'neutral', 
-					'awesome'
+					'Not comfortable', 
+					'Somewhat comfortable', 
+					'Very comfortable'
 				],
 				max:10, 
 				min:-10, 
@@ -39,7 +39,7 @@ var settings = {
 				}
 			}
 		],
-		titleText:"How useful was this platform?", 
+		titleText:"How comfortable are you with D3?", 
 		subtitleText:'slide, then click "submit"', 
 	},
 	histogram:{
