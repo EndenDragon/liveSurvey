@@ -6,7 +6,7 @@ var settings = {
 		socket:'http://freeman01.ischool.uw.edu:3000/',
 		charts:['chat'], 
 		getUser:true,
-		userPrompt:"Enter your UW NetID",
+		userPrompt:"Enter your first name",
 		userOptions:{
 			input:true, 
 			buttons:{
@@ -49,7 +49,7 @@ var settings = {
 			    }, 
 			},
 		], 
-		titleText:"What has been your favorite topic of this course?", 
+		titleText:"What are you most excited about for this course?", 
 		subtitleText:'(type response below)'
 	},
 	chat:{
