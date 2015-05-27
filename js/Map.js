@@ -5,7 +5,7 @@ var Map = function (sets) {
 		id:'map',
 		container:'container',
 		attribution:'<a href="http://www.mapbox.com/about/maps/" target="_blank">Terms &amp; Feedback</a>',
-		tileUrl:'https://{s}.tiles.mapbox.com/v4/michaelfreeman.lc5jblfh/{z}/{x}/{y}.png?access_token=',
+		tileUrl:'https://{s}.tiles.mapbox.com/v4/michaelfreeman.ma0eefm4/{z}/{x}/{y}.png?access_token=',
 		accessToken:'pk.eyJ1IjoibWljaGFlbGZyZWVtYW4iLCJhIjoibE5leG9MRSJ9.YHTl3OfWurGattFSUzwhag',
 		showMap:true,
 		center:[1.054, -2.10],

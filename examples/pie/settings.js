@@ -6,6 +6,8 @@ var settings = {
 		id:'pie',
 		socket:'http://freeman01.ischool.uw.edu:3005/',
 		charts:['pie', 'bar'], 
+
+		// Action is exectued when a socket hears the "on" event
 		listeners:[
 			{
 				on:'chat message', 
@@ -22,7 +24,7 @@ var settings = {
 				type:'pie', 
 				action:function(value) {
 					if(settings.submitted == true && settings.protect == true) return
-					view.socket.emit('chat message', {value:value.data.category, id:view.settings.id})
+					view.socket.emit('chat message', {value:value.data.category, id:view.settings.id}) // emit socket event!
 					$('#view-subtitle').text("you've submitted!")
 					settings.submitted = true
 				}				
