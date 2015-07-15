@@ -39,28 +39,39 @@ View.prototype.init = function() {
 
 View.prototype.build = function() {
 	var self = this
-	self.addTitle()
-	self.buildControls()	
-	self.charts = self.settings.charts.map(function(chart){
-		switch(settings[chart].type) {
-			case 'map':
-				return new Map(settings[chart])
-				break;
-			case 'chat':
-				return new Chat(settings[chart])
-				break;
-			case 'histogram':
-				return new Histogram(settings[chart])
-				break;
-			case 'bar':
-				return new Bar(settings[chart])
-				break;
-			case 'pie':
-				return new Pie(settings[chart])
-				break;
-		}
-	})
-	self.addEvents()
+	var build = function() {
+		self.addTitle()
+		self.buildControls()	
+		self.charts = self.settings.charts.map(function(chart){
+			switch(settings[chart].type) {
+				case 'map':
+					return new Map(settings[chart])
+					break;
+				case 'chat':
+					return new Chat(settings[chart])
+					break;
+				case 'histogram':
+					return new Histogram(settings[chart])
+					break;
+				case 'bar':
+					return new Bar(settings[chart])
+					break;
+				case 'pie':
+					return new Pie(settings[chart])
+					break;
+				case 'horizontal':
+					return new Horizontal(settings[chart])
+					break;
+				case 'stackedHistogram':
+					return new StackedHistogram(settings[chart])
+					break;
+			}
+		})
+		self.addEvents()
+	}
+	if(self.settings.getData != undefined) self.settings.getData(build)
+	else build()
+	
 }
 
 View.prototype.buildControls = function(){
@@ -133,6 +144,7 @@ View.prototype.addEvents = function() {
 
 	// Add custom events (ie, not controls)
 	if(self.settings.customEvents != undefined) {
+		console.log('custom Events')
 		self.settings.customEvents.map(function(event){
 			switch(event.type) {
 				case 'form':
@@ -146,6 +158,10 @@ View.prototype.addEvents = function() {
 					break;	
 				case 'bar':
 					self.charts[0].g.selectAll('rect').on('click', event.action)
+					break;
+				case 'horizontal':
+					console.log('add click')
+					self.charts[0].g.selectAll('circle').on('click', event.action)
 					break;
 			}
 		})

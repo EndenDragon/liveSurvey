@@ -12,9 +12,10 @@ var settings = {
 			{
 				on:'chat message', 
 				action:function(obj) {
+					console.log('data ', obj)
 					if(obj.id != view.settings.id) return
 					var value = obj.value
-					view.charts[1].settings.values.filter(function(d) {return d.category == value}).map(function(d) {d.value += 1})
+					view.charts[1].settings.values = obj.data
 					view.charts[1].draw()
 				}
 			}
@@ -24,7 +25,9 @@ var settings = {
 				type:'pie', 
 				action:function(value) {
 					if(settings.submitted == true && settings.protect == true) return
-					view.socket.emit('chat message', {value:value.data.category, id:view.settings.id}) // emit socket event!
+					view.charts[1].settings.values.filter(function(d) {return d.category == value.data.category}).map(function(d) {d.value += 1})
+					var data = view.charts[1].settings.values
+					view.socket.emit('chat message', {data:data, id:view.settings.id}) // emit socket event!
 					$('#view-subtitle').text("you've submitted!")
 					settings.submitted = true
 				}				
