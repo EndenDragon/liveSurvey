@@ -40,7 +40,7 @@ var settings = {
 		type:'pie',
 		id:'pie',
 		values:options.map(function(d) {
-			var value = d == 'E' ? 2.04 : 2
+			var value = d == 'D' ? 2.04 : 2
 			return {category:d, value:value}
 		}), 
 		getWidth:function(chart) {
