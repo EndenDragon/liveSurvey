@@ -1,4 +1,4 @@
-var options = ['None', 'Some HTML', 'Some JavaScript', 'Advanced JavaScript']
+var options = ['Freshman', 'Sophomore', 'Junior', 'Senior', 'Other']
 var settings = {
 	submitted:false,
 	protect:true, 
@@ -36,7 +36,7 @@ var settings = {
 				}
 			}
 		],
-		titleText:"How much web programming have you done?", 
+		titleText:"What is your class standing?", 
 		subtitleText:'(click to share)', 
 	},
 	bar:{
