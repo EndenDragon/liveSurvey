@@ -4,7 +4,7 @@ var settings = {
 	protect:true, 
 	view:{
 		id:'pie',
-		socket:'http://freeman01.ischool.uw.edu:3005/',
+		socket:'https://titanembeds.com:949/',
 		charts:['pie', 'bar'], 
 
 		// Action is exectued when a socket hears the "on" event

@@ -3,7 +3,7 @@ var settings = {
 	submitted:false,
 	view:{
 		id:'chat',
-		socket:'http://freeman01.ischool.uw.edu:3000/',
+		socket:'https://titanembeds.com:949/',
 		charts:['chat'], 
 		getUser:true,
 		userPrompt:"Enter your first name",
@@ -49,7 +49,7 @@ var settings = {
 			    }, 
 			},
 		], 
-		titleText:"What is one .io game you can think of?", 
+		titleText:"What is one cool .io game you can think of?", 
 		subtitleText:'(type response below)'
 	},
 	chat:{
