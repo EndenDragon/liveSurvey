@@ -49,7 +49,7 @@ var settings = {
 			    }, 
 			},
 		], 
-		titleText:"What are you most excited about for this course?", 
+		titleText:"What is one .io game you can think of?", 
 		subtitleText:'(type response below)'
 	},
 	chat:{
